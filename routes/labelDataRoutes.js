@@ -31,7 +31,7 @@ router.post('/updateOrCreate', async (req, res) => {
   const { _id, componentType, title, content } = req.body;
   try {
     let component;
-    if (id) {
+    if (_id) {
       // If ID is provided, update existing component
       component = await LabelData.findByIdAndUpdate(
         _id,
