@@ -28,13 +28,13 @@ router.get('/:id', async (req, res) => {
 
 // Add or Update content
 router.post('/updateOrCreate', async (req, res) => {
-  const { id, componentType, title, content } = req.body;
+  const { _id, componentType, title, content } = req.body;
   try {
     let component;
     if (id) {
       // If ID is provided, update existing component
       component = await LabelData.findByIdAndUpdate(
-        id,
+        _id,
         { title, content },
         { new: true }
       );
