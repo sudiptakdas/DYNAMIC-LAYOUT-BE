@@ -35,12 +35,12 @@ router.post('/updateOrCreate', async (req, res) => {
       // If ID is provided, update existing component
       component = await LabelData.findByIdAndUpdate(
         _id,
-        { title, content },
+        { $set: { title, content }, $inc: { updateCount: 1 } },
         { new: true }
       );
     } else {
       // If no ID provided, create new component
-      component = new LabelData({ componentType, title, content });
+      component = new LabelData({ componentType, title, content, addCount: 1 });
       await component.save();
     }
     res
